@@ -78,6 +78,7 @@
                     (error) => {
                         this.changeShowReport(true, 'There Was an error', true);
                     });
+            this.book = new Book('', '', 1990);
         }
 
         public getBooks(): Array<Book> {
