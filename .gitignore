@@ -25,3 +25,6 @@
 /dist/
 /nbdist/
 /.nb-gradle/
+client/src/components/
+spring-server/src/test/
+spring-server/target/
