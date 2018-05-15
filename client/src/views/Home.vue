@@ -42,6 +42,7 @@
         <button class="button is-success" @click="getBooks()">Axios Get Books</button>
         <button class="button is-success" @click="getBooksFromObservable()">Ajax Observable Get Books</button>
         <button class="button is-success" @click="handleWithEventSource()">EventSource Get Books</button>
+        <button class="button is-warning" @click="books = []; showReport = false">Clear Books</button>
     </div>
 </template>
 
