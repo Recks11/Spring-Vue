@@ -80,7 +80,7 @@
         public getBooks(): Array<Book> {
             let allBooks: Array<Book> = [];
 
-            this.axios.get('http://localhost:8080/api/book')
+            this.axios.get('http://localhost:8080/api/books')
                 .then((response: AxiosResponse<Book[]>) => {
                     this.books = response.data;
 
