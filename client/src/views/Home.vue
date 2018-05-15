@@ -124,6 +124,8 @@
                 },(error: string) => {
                     this.changeShowReport(true, 'Book could not be deleted', true)
                 });
+            let uid = this.books.findIndex((value) => value.id === id);
+            this.books.splice(uid, 1);
         }
 
         private changeShowReport(show: boolean, message: string, error: boolean): void {
