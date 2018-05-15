@@ -1,7 +1,7 @@
 <template>
     <div class="home">
         <img src="../assets/logo.png">
-        <div class="notification" :class="{'is-danger': hasError, 'is-primary': !hasError}" v-if="showReport === true">
+        <div class="notification" :class="{'is-warning': hasError, 'is-primary': !hasError}" v-if="showReport === true">
             <button class="delete" @click="showReport = false"></button>
             {{ reportText }}
         </div>
@@ -111,7 +111,8 @@
             };
 
             setTimeout(() => {
-                eventSource.close()
+                eventSource.close();
+                this.changeShowReport(true, 'Stream Closed!', true)
             }, 10000)
         }
 
