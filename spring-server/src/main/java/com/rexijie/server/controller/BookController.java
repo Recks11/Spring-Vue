@@ -47,4 +47,10 @@ public class BookController {
     public Mono<Book> createBook(@RequestBody Book book) {
         return bookService.ceateAndSaveBook(book);
     }
+
+    @ResponseStatus(HttpStatus.OK)
+    @DeleteMapping("/{id}")
+    public Mono<Void> deleteBook(@PathVariable String id) {
+        return bookService.deleteSingle(id);
+    }
 }

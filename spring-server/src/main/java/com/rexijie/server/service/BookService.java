@@ -12,4 +12,5 @@ public interface BookService {
     Flux<Book> findAllBooksWithDelay(Long delay);
     Mono<Void> saveAll(Flux<Book> book);
     Mono<Void> deleteAll();
+    Mono<Void> deleteSingle(String id);
 }

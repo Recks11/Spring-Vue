@@ -11,6 +11,7 @@
                 <td>Title</td>
                 <td>Publisher</td>
                 <td>Year</td>
+                <td>Action</td>
             </tr>
             </thead>
             <tbody>
@@ -18,6 +19,7 @@
                 <td>{{book.title}}</td>
                 <td>{{book.publisher}}</td>
                 <td>{{book.year}}</td>
+                <td><button class="delete" @click="deleteBook(book.id)"></button></td>
             </tr>
             </tbody>
         </table>
@@ -84,7 +86,6 @@
             this.axios.get('http://localhost:8080/api/books')
                 .then((response: AxiosResponse<Book[]>) => {
                     this.books = response.data;
-
                     this.changeShowReport(true, 'Success!', false)
                 }, (error: string) => {
                     console.log(error);
@@ -103,8 +104,8 @@
         public handleWithEventSource(): void {
             let eventSource = new EventSource('http://localhost:8080/api/books/delayed/1');
 
-            console.log('CLOSED: ' + eventSource.CLOSED);
             eventSource.onmessage = (response) => {
+
                 let result = JSON.parse(response.data) as Book;
                 this.books.push(result);
                 this.changeShowReport(true, 'Stream Incoming!', false)
@@ -113,7 +114,16 @@
             setTimeout(() => {
                 eventSource.close();
                 this.changeShowReport(true, 'Stream Closed!', true)
-            }, 10000)
+            }, 10000);
+        }
+
+        public deleteBook(id: string) {
+            this.axios.delete('http://localhost:8080/api/books/' + id)
+                .then(value => {
+                    this.changeShowReport(true, 'Book Deleted', false)
+                },(error: string) => {
+                    this.changeShowReport(true, 'Book could not be deleted', true)
+                });
         }
 
         private changeShowReport(show: boolean, message: string, error: boolean): void {

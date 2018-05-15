@@ -51,4 +51,9 @@ public class BookServiceImpl implements BookService {
     public Mono<Void> deleteAll() {
         return bookRepository.deleteAll();
     }
+
+    @Override
+    public Mono<Void> deleteSingle(String id) {
+        return bookRepository.deleteById(id);
+    }
 }
